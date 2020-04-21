@@ -48,7 +48,8 @@ public class Calendar {
                   break;
         case "2": calendar.searchEvent(scanner, manager);
                   break;
-        case "3": break;
+        case "3": manager.printCalendar(2020, 4);
+        	      break;
         case "h": calendar.printOption();
                   break;
         case "q": quit = true;
