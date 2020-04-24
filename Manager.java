@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.text.ParseException;
 import java.io.*;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Manager{
   private final int[] maxDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -27,7 +28,15 @@ public class Manager{
     }
     return maxDays[month - 1];
   }
-  void printCalendar(int year, int month){
+  void printCalendar(){
+	  int year;
+	  int month;
+	  Scanner sc = new Scanner(System.in);
+	  System.out.println("년도를 입력하세요 : ");
+	  year = sc.nextInt();
+	  System.out.println("월을 입력하세요 : "); 
+	  month = sc.nextInt();
+	 
     int maxDays = maxDaysOfMonth(year, month);
     int first = getFirstDayOfMonth(year, month);
     System.out.printf("        <<%4d년 %3d월>>\n", year, month);
@@ -84,7 +93,8 @@ public class Manager{
       return "-1";
     }
   }
-
+  
+ 
 
   void readFile(){
     try{

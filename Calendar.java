@@ -32,6 +32,8 @@ public class Calendar {
                break;
     }
   }
+  
+
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
@@ -48,13 +50,13 @@ public class Calendar {
                   break;
         case "2": calendar.searchEvent(scanner, manager);
                   break;
-        case "3": manager.printCalendar(2020, 4);
+        case "3": manager.printCalendar();
         	      break;
         case "h": calendar.printOption();
                   break;
         case "q": quit = true;
                   manager.writeFile();
-                  break;
+                  break;         
         default:  System.out.println("다시 입력해주세요.");
                   break;
       }
