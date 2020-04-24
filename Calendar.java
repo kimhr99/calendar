@@ -1,12 +1,13 @@
 import java.util.Scanner;
 
+
 public class Calendar {
 
   void printOption(){
     System.out.println("==========");
     System.out.println("| 1. 일정등록");
     System.out.println("| 2. 일정검색");
-    System.out.println("| 3. 달력보기");
+    System.out.println("| 3. 보고싶은 달보기");
     System.out.println("| h. 도움말");
     System.out.println("| q. 종료");
     System.out.println("==========");
