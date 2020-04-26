@@ -10,6 +10,7 @@ public class Calendar {
     System.out.println("| 3. 보고싶은 달보기");
     System.out.println("| h. 도움말");
     System.out.println("| q. 종료");
+    System.out.println("| r. 모든 일정 지우기");
     System.out.println("==========");
   }
 
@@ -44,7 +45,7 @@ public class Calendar {
     boolean quit = false;
     calendar.printOption();
     while(!quit){
-      System.out.print("명령(1, 2, 3, h, q)>");
+      System.out.print("명령(1, 2, 3, h, q, r)>");
       command = scanner.next();
       switch (command){
         case "1": calendar.registerEvent(scanner, manager);
@@ -57,7 +58,9 @@ public class Calendar {
                   break;
         case "q": quit = true;
                   manager.writeFile();
-                  break;         
+                  break; 
+        case "r": manager.scheduleRemoveAll();
+                  break;
         default:  System.out.println("다시 입력해주세요.");
                   break;
       }

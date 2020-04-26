@@ -86,12 +86,7 @@ public class Manager{
       int sDayNum = cal.get(Calendar.DAY_OF_WEEK); // 1일의 요일 얻어오기
       int endDate = cal.getActualMaximum(Calendar.DATE); //달의 마지막일 얻기
       
-      //콘솔 출력 
-      //System.out.println("startDATE="+cal.get(Calendar.DATE));
-      //System.out.println("sDayNum="+sDayNum);
-      //System.out.println("endDate="+endDate);
-      
-      
+     
       int nowYear = cal.get(Calendar.YEAR);
       int nowMonth = cal.get(Calendar.MONTH);
 
@@ -152,6 +147,7 @@ public class Manager{
     try{
       Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
       return eventMap.get(date);
+    
     }
     catch (ParseException e){
       System.out.println("다시 입력해주세요.");
@@ -159,6 +155,10 @@ public class Manager{
     }
   }
   
+  public void scheduleRemoveAll() {
+	  this.eventMap.clear();
+  }
+ 
   void readFile(){
     try{
       BufferedReader reader = new BufferedReader(new FileReader(fileName));
