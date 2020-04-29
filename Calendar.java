@@ -1,11 +1,7 @@
-
 import java.util.Scanner;
-
-
 public class Calendar {
 
-
-
+	
 void printOption(){
     System.out.println("==========");
     System.out.println("| 1. 일정등록");
