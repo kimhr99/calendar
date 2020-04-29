@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.io.*;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import javafx.scene.chart.PieChart.Data;
+
 import java.util.Calendar;
 
 public class Manager{
@@ -18,20 +21,20 @@ public class Manager{
     readFile();
     Manager.getMonthGalendar();
   }
-  public boolean isLeapYear(int year){
+  public boolean isLeapYear(int year){ //윤년
     if(year%4 == 0 && (year%100 != 0 || year%400 == 0)){
       return true;
     }
     return false;
   }
 
-  public int maxDaysOfMonth(int year, int month){
+  public int maxDaysOfMonth(int year, int month){ //달의 최대 일
     if(isLeapYear(year) && month == 2){
       return 29;
     }
     return maxDays[month - 1];
   }
-  void printCalendar(){
+  void printCalendar(){ //달력 출력 매소드
 	  int year;
 	  int month;
 	  System.out.println("\n========== 달력 출력프로그램 ====================");
@@ -57,9 +60,9 @@ public class Manager{
            
              System.out.printf("%3d\t",intDateNum); //일반 출력
             
-            intDateNum++; //출력할 date 증가.
+            intDateNum++; //출력할 date 증가
         }            
-        if(i%7==0) System.out.println(); // i가 7의배수가 되면 줄바꿈. 
+        if(i%7==0) System.out.println(); // i가 7의배수가 되면 줄바꿈
        
     }//for-----------------
     System.out.println();
@@ -73,7 +76,8 @@ public class Manager{
      
       getMonthGalendar(thisYear,thisMonth); // 현재달의 달력을 출력
  }
-  public static void getMonthGalendar(int intYear, int intMmonth){
+  
+  public static void getMonthGalendar(int intYear, int intMmonth){ //현재 달력 출력 매소드
 	  Calendar cal = Calendar.getInstance();
       
       int thisYear = cal.get(Calendar.YEAR); //현재 년
@@ -91,8 +95,6 @@ public class Manager{
       int nowMonth = cal.get(Calendar.MONTH);
 
       System.out.println("===================== "+ nowYear+"년  " + (nowMonth+1) + "월 ==================");
-
-      
       //요일명 출력
       System.out.println(" 일\t 월\t 화\t 수\t 목\t 금\t 토\t");  
       System.out.println("====================================================");
@@ -107,16 +109,16 @@ public class Manager{
               if(booToday && intDateNum==today) System.out.printf("[%2d]\t",intDateNum); //오늘 날짜 표시
               else System.out.printf("%3d\t",intDateNum); //일반 출력
               
-              intDateNum++; //출력할 date 증가.
+              intDateNum++; //출력할 date 증가
           }            
-          if(i%7==0) System.out.println(); // i가 7의배수가 되면 줄바꿈. 
+          if(i%7==0) System.out.println(); // i가 7의배수가 되면 줄바꿈
          
-      }//for-----------------
+      }
       System.out.println();
-      
   }
   
-  public int getFirstDayOfMonth(int year, int month){
+  
+  public int getFirstDayOfMonth(int year, int month){ //달의 첫날 받기
     int baseYear = 1970;
     int baseDay = 4;
     int count = 0;
@@ -132,9 +134,10 @@ public class Manager{
     return day;
   }
 
+
   public void registerEvent(String strDate, String event){
     try{
-      Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
+    	 Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
       eventMap.put(date, event);
     }
     catch (ParseException e){
@@ -144,21 +147,21 @@ public class Manager{
   }
 
   public String searchEvent(String strDate){
-    try{
-      Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
+	  try{
+    	  Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
       return eventMap.get(date);
-    
-    }
+      }
     catch (ParseException e){
-      System.out.println("다시 입력해주세요.");
+    	System.out.println("다시 입력해주세요.");
       return "-1";
     }
   }
   
-  public void scheduleRemoveAll() {
+  public void scheduleRemoveAll() { //모든 일정 지우기 매소드
 	  this.eventMap.clear();
   }
- 
+  
+
   void readFile(){
     try{
       BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -187,7 +190,7 @@ public class Manager{
     }
     try{
       BufferedWriter writer = new BufferedWriter(new FileWriter(f, false));
-      Iterator iterator = eventMap.keySet().iterator();
+      Iterator<Date> iterator = eventMap.keySet().iterator();
       SimpleDateFormat date = new SimpleDateFormat("yyyy-mm-dd");
       while(iterator.hasNext()){
         Date key = (Date)iterator.next();
@@ -201,3 +204,5 @@ public class Manager{
     }
   }
 }
+
+

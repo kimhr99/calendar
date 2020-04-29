@@ -1,9 +1,12 @@
+
 import java.util.Scanner;
 
 
 public class Calendar {
 
-  void printOption(){
+
+
+void printOption(){
     System.out.println("==========");
     System.out.println("| 1. 일정등록");
     System.out.println("| 2. 일정검색");
@@ -27,16 +30,49 @@ public class Calendar {
     System.out.println("[일정 검색]");
     System.out.println("날짜 (yyyy-mm-dd)>");
     String date = s.next();
-    String event = m.searchEvent(date);
-    switch(event){
-      case "-1": break;
-      default: System.out.println(event);
-               break;
+    
+    char[] a = date.toCharArray(); 
+    int count=0;
+    for(int i=0; i<a.length;i++) {
+    	if(a[i]=='-')
+    		count = count + 1;
+    } 
+  
+  
+    if(count == 1){
+    	  for(int i = 1; i<=31; i++) {
+    	        String tmp = date;
+    	    	if(i<10) {
+    	    		tmp = tmp + "-0" + i;
+    	    	}else {
+    	    		tmp = tmp + "-" + i;
+    	    	}
+    		String event = m.searchEvent(tmp);
+           
+    		try {
+    		switch(event) { 
+            case "-1": break;
+            default: System.out.println(event);
+                     break;
+    		}
+    	    }
+    		catch (NullPointerException e) {
+    	      } 
+    	}
     }
+    
+    else if(count == 2){
+    	String event = m.searchEvent(date);
+    	switch(event) {
+        case "-1": 
+    		System.out.println("에러");
+    		break;
+    	default: System.out.println(event);
+                 break;
+     	}
+    } 
   }
   
-
-
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     Manager manager = new Manager();
