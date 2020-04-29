@@ -5,9 +5,6 @@ import java.text.ParseException;
 import java.io.*;
 import java.util.Iterator;
 import java.util.Scanner;
-
-import javafx.scene.chart.PieChart.Data;
-
 import java.util.Calendar;
 
 public class Manager{
