@@ -24,7 +24,7 @@ void printOption(){
 
   void searchEvent(Scanner s, Manager m){
     System.out.println("[일정 검색]");
-    System.out.println("날짜 (yyyy-mm-dd)>");
+    System.out.println("날짜 (yyyy-mm-dd or yyyy-mm)>");
     String date = s.next();
     
     char[] a = date.toCharArray(); 
